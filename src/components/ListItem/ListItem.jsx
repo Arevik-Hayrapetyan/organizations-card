@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import { red } from '@mui/material/colors'
@@ -9,6 +9,10 @@ import TextField from '@mui/material/TextField'
 import { styled } from '@mui/material/styles'
 
 const Root = styled('div')(({ theme }) => ({
+  position: 'relative',
+  '& .MuiCardHeader-root': {
+    padding: 'unset',
+  },
   '& .MuiCard-root': {
     padding: '20px',
   },
@@ -23,41 +27,59 @@ const Root = styled('div')(({ theme }) => ({
   '.protectionContainer': {
     marginLeft: 'auto',
   },
-  '.trackingContainer': {},
+  '.trackingContainer': {
+    marginRight: 50,
+  },
   '.dropdownContent': {
     display: 'none',
-    width: '40%',
+    position: 'absolute',
     marginLeft: 'auto',
-    marginTop: '20px',
     backgroundColor: ' #f9f9f9',
     boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
     zIndex: 1,
+    right: '13%',
   },
   '.dropdownContent li': {
     listStyle: 'none',
     padding: '4px',
   },
-  '.show':{
-    display:'block'
-  }
+  '.show': {
+    display: 'block',
+  },
+  '.licences': {
+    color: '#282828',
+    fontSize: 17,
+    fontWeight: 500,
+    margin: 0,
+    marginTop: 15,
+  },
+  '.heading': {
+    color: '#282828',
+    fontSize: 15,
+    fontWeight: 500,
+  },
+  '& .MuiTypography-root': {
+    fontWeight: 600,
+    fontSize: 17,
+  },
+  
 }))
 
-const ListItem = () => {
+const ListItem = ({id, name, tracking, protection}) => {
   const [show, setShow] = useState(false)
+
+
 
   function handleDropdown() {
     setShow(!show)
-    if(show){
-
-    }
   }
   return (
     <Root>
-      <Card sx={{ maxWidth: 400, marginTop: '50px' }}>
+      <Card sx={{ maxWidth: 400, margin: '40px' }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
+              {name.charAt(0).toUpperCase()}
             </Avatar>
           }
           action={
@@ -65,36 +87,36 @@ const ListItem = () => {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
+          title={name}
         />
 
-        <div className={`dropdownContent ${show?'show':null}`}>
+        <div className={`dropdownContent ${show ? 'show' : null}`}>
           <li>Edit</li>
           <li>Go to Organization</li>
           <li>Delete Organization</li>
         </div>
 
-        <h3>Licenses</h3>
+        <h3 className="licences">Licenses</h3>
         <section className="infoContainer">
-          <div className="trackingContainer">
-            <h4>Tracking:</h4>
+          <div className="trackingContainer ">
+            <h4 className="heading">Tracking:</h4>
             <p>
-              In use: <span>{1245}</span>
+              In use: <span>{tracking.used}</span>
             </p>
             <div>
               Assigned:
-              <TextField id="outlined-number" label="" type="number" />
+              <TextField id="outlined-number" label="" type="number" value={tracking.assigned} />
             </div>
           </div>
 
           <div className="protectionContainer">
-            <h4>protection:</h4>
+            <h4 className="heading">Protection:</h4>
             <p>
-              In use: <span>{1245}</span>
+              In use: <span>{protection.used}</span>
             </p>
             <div>
               Assigned:
-              <TextField id="outlined-number" label="" type="number" />\
+              <TextField id="outlined-number" label="" type="number" value={protection.assigned}/>
             </div>
           </div>
         </section>
