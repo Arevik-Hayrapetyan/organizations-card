@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectCount } from '../../redux/slices/organizationSlice';
 
-const Heading = ({companiesCount =15}) => {
+const Heading = () => {
+  const count = useSelector(selectCount)
   return (
     <div>
-      All organizations ({companiesCount})
+      All organizations ({count})
     </div>
   );
 }

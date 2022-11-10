@@ -58,5 +58,17 @@
       "used":300,
       "assigned":800
      }
+  },
+  {
+    "id":6,
+    "name":"Copper Coconut",
+     "tracking":{
+      "used":1245,
+      "assigned":1200
+     },
+     "protection":{
+      "used":300,
+      "assigned":800
+     }
   }
 ]
