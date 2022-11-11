@@ -23,6 +23,7 @@ const Root = styled('div')(({ theme }) => ({
   '.infoContainer': {
     display: 'flex',
     flexDirection: 'row',
+    
   },
   '.protectionContainer': {
     marginLeft: 'auto',

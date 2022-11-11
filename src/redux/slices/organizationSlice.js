@@ -24,14 +24,17 @@ export const organizationSlice = createSlice({
       state.searchedValue = action.payload.sear
     },
     filterData: (state, action) => {
-      state.searchedValue = action.payload.toLowerCase().trim()
-      state.filteredData = state.organizations.filter((item) =>
-        item.name
+      state.searchedValue = action.payload
+        .toLowerCase()
+        .trim()
+        .replace(/\s/g, '')
+      state.filteredData = state.organizations.filter((item) => {
+        return item.name
           .toLowerCase()
           .trim()
-          .includes(state.searchedValue),
-      )
-      console.log("filtereddata", state.filteredData)
+          .replace(/\s/g, '')
+          .includes(state.searchedValue)
+      })
     },
   },
 

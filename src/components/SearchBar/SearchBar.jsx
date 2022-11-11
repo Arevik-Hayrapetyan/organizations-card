@@ -23,7 +23,7 @@ const SearchBar = () => {
   return (
     <Root>
       <TextField
-        onChange={(e) =>  dispatch(filterData(e.target.value))}
+        onChange={(e) =>  dispatch(filterData(e.target.value.toLowerCase().trim()))}
         id="outlined-basic"
         label="Outlined"
         variant="outlined"
