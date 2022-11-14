@@ -5,71 +5,15 @@ import { red } from '@mui/material/colors'
 import Avatar from '@mui/material/Avatar'
 import IconButton from '@mui/material/IconButton'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import TextField from '@mui/material/TextField'
-import { styled } from '@mui/material/styles'
+import InfoContainer from '../InfoContainer/InfoContainer'
+import { Root } from './style'
 
-const Root = styled('div')(({ theme }) => ({
-  position: 'relative',
-  '& .MuiCardHeader-root': {
-    padding: 'unset',
-  },
-  '& .MuiCard-root': {
-    padding: '20px',
-  },
-  '& .MuiInputBase-root': {
-    height: '30px',
-    width: '80px !important',
-  },
-  '.infoContainer': {
-    display: 'flex',
-    flexDirection: 'row',
-    
-  },
-  '.protectionContainer': {
-    marginLeft: 'auto',
-  },
-  '.trackingContainer': {
-    marginRight: 50,
-  },
-  '.dropdownContent': {
-    display: 'none',
-    position: 'absolute',
-    marginLeft: 'auto',
-    backgroundColor: ' #f9f9f9',
-    boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)',
-    zIndex: 1,
-    right: '13%',
-  },
-  '.dropdownContent li': {
-    listStyle: 'none',
-    padding: '4px',
-  },
-  '.show': {
-    display: 'block',
-  },
-  '.licences': {
-    color: '#282828',
-    fontSize: 17,
-    fontWeight: 500,
-    margin: 0,
-    marginTop: 15,
-  },
-  '.heading': {
-    color: '#282828',
-    fontSize: 15,
-    fontWeight: 500,
-  },
-  '& .MuiTypography-root': {
-    fontWeight: 600,
-    fontSize: 17,
-  },
-  
-}))
-
-const ListItem = ({id, name, tracking, protection}) => {
+const ListItem = (props) => {
   const [show, setShow] = useState(false)
 
-
+  function handleChange(event) {
+    console.log(event.target.value, 'Input')
+  }
 
   function handleDropdown() {
     setShow(!show)
@@ -80,7 +24,7 @@ const ListItem = ({id, name, tracking, protection}) => {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              {name.charAt(0).toUpperCase()}
+              {props.name.charAt(0).toUpperCase()}
             </Avatar>
           }
           action={
@@ -88,7 +32,7 @@ const ListItem = ({id, name, tracking, protection}) => {
               <MoreVertIcon />
             </IconButton>
           }
-          title={name}
+          title={props.name}
         />
 
         <div className={`dropdownContent ${show ? 'show' : null}`}>
@@ -98,29 +42,7 @@ const ListItem = ({id, name, tracking, protection}) => {
         </div>
 
         <h3 className="licences">Licenses</h3>
-        <section className="infoContainer">
-          <div className="trackingContainer ">
-            <h4 className="heading">Tracking:</h4>
-            <p>
-              In use: <span>{tracking.used}</span>
-            </p>
-            <div>
-              Assigned:
-              <TextField id="outlined-number" label="" type="number" value={tracking.assigned} />
-            </div>
-          </div>
-
-          <div className="protectionContainer">
-            <h4 className="heading">Protection:</h4>
-            <p>
-              In use: <span>{protection.used}</span>
-            </p>
-            <div>
-              Assigned:
-              <TextField id="outlined-number" label="" type="number" value={protection.assigned}/>
-            </div>
-          </div>
-        </section>
+        <InfoContainer disabledBorder={true} props={props}/>
       </Card>
     </Root>
   )

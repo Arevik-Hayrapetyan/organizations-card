@@ -2,73 +2,57 @@
   {
     "id":1,
     "name":"Gothic Glasses",
-     "tracking":{
-      "used":1245,
-      "assigned":1200
-     },
-     "protection":{
-      "used":300,
-      "assigned":800
-     }
+    
+      "trackingInUse":1245,
+      "trackingAssigned":1200,
+     
+      "protectionInUse":300,
+      "protectionAssigned":800
+     
   },
   {
     "id":2,
     "name":"Leather Lux",
-     "tracking":{
-      "used":1245,
-      "assigned":1200
-     },
-     "protection":{
-      "used":300,
-      "assigned":800
-     }
+    "trackingInUse":1245,
+      "trackingAssigned":1200,
+     
+      "protectionInUse":300,
+      "protectionAssigned":800
   },
   {
     "id":3,
     "name":"Brass Bunny",
-     "tracking":{
-      "used":1245,
-      "assigned":1200
-     },
-     "protection":{
-      "used":300,
-      "assigned":800
-     }
+    "trackingInUse":1245,
+    "trackingAssigned":1200,
+   
+    "protectionInUse":300,
+    "protectionAssigned":800
   },
   {
     "id":4,
     "name":"Copper Coconut",
-     "tracking":{
-      "used":1245,
-      "assigned":1200
-     },
-     "protection":{
-      "used":300,
-      "assigned":800
-     }
+    "trackingInUse":1245,
+    "trackingAssigned":1200,
+   
+    "protectionInUse":300,
+    "protectionAssigned":800
   },
   {
     "id":5,
     "name":"Ringlette",
-     "tracking":{
-      "used":1245,
-      "assigned":1200
-     },
-     "protection":{
-      "used":300,
-      "assigned":800
-     }
+    "trackingInUse":1245,
+    "trackingAssigned":1200,
+   
+    "protectionInUse":300,
+    "protectionAssigned":800
   },
   {
     "id":6,
     "name":"Copper Coconut",
-     "tracking":{
-      "used":1245,
-      "assigned":1200
-     },
-     "protection":{
-      "used":300,
-      "assigned":800
-     }
+    "trackingInUse":1245,
+    "trackingAssigned":1200,
+   
+    "protectionInUse":300,
+    "protectionAssigned":800
   }
 ]
