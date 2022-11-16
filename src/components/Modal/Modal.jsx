@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { handleChangeInputs } from '../../redux/slices/organizationSlice'
+import { handleAddCompany } from '../../redux/slices/organizationSlice'
 import Modal from '@mui/material/Modal'
 import Box from '@mui/material/Box'
 import ApartmentIcon from '@mui/icons-material/Apartment'
@@ -9,13 +12,28 @@ import { Button } from '@mui/material'
 import { boxStyle } from './style'
 import { btnStyle } from './style'
 
-const StyledModal = ({ open, handleClose }) => {
-  function handleChange(event) {
-    console.log(event.target.value, 'Input')
-  }
-  function handleAddCompany(){
+const StyledModal = ({ open, handleClose, setMessage, message }) => {
+  const dispatch = useDispatch()
 
+  const [name, setName] = useState('')
+
+  function handleAdd() {
+    if (!name.trim().length > 0) {
+      setMessage('Name input cant be empty!!!!!!!')
+      return
+    }
+    dispatch(handleChangeInputs({ name }))
+    dispatch(handleAddCompany())
+    setMessage('')
+    setName('')
+    handleClose()
   }
+
+  function handleAddCompanyName(event) {
+    const name = event.target.value
+    setName(name)
+  }
+
   return (
     <Modal
       open={open}
@@ -27,6 +45,7 @@ const StyledModal = ({ open, handleClose }) => {
         <TextField
           id="input-with-icon-textfield"
           label="Organization Name"
+          onChange={(e) => handleAddCompanyName(e)}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -36,8 +55,10 @@ const StyledModal = ({ open, handleClose }) => {
           }}
           variant="standard"
         />
+        <span style={{ color: 'red', fontSize: '12px' }}>{message}</span>
         <InfoContainer disabledBorder={false} />
-        <Button variant="contained" sx={btnStyle} onClick={() => handleAddCompany() }>
+
+        <Button variant="contained" sx={btnStyle} onClick={() => handleAdd()}>
           Add
         </Button>
       </Box>

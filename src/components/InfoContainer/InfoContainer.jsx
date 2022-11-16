@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import Input from '../Input/Input'
 import { Root } from './style'
+import { handleChangeInputs } from '../../redux/slices/organizationSlice'
+import { useDispatch } from 'react-redux'
 
 const InfoContainer = ({ disabledBorder, props }) => {
+  const dispatch = useDispatch()
   const [state, setState] = useState({
     trackingInUse: 0,
     trackingAssigned: 0,
@@ -14,8 +17,8 @@ const InfoContainer = ({ disabledBorder, props }) => {
     const target = event.target
     const value = target.value
     const name = target.name
-    console.log(name, "namemememmemem")
     setState((prev) => ({ ...prev, [name]: value }))
+    dispatch(handleChangeInputs(state))
   }
 
   return (

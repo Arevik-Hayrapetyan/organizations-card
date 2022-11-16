@@ -55,4 +55,11 @@ export const Root = styled('div')(() => ({
     fontWeight: 600,
     fontSize: 17,
   },
+  '.deleteBtn':{
+    cursor:'pointer'
+  },
+  'a':{
+    textDecoration: 'none',
+    color:'black'
+  }
 }))

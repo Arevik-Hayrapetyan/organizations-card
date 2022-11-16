@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react'
+import React from 'react'
 import ListItem from '../ListItem/ListItem'
 import { useSelector } from 'react-redux'
 import {
@@ -15,7 +15,7 @@ const ListItems = () => {
   return (
     <Root>
       <ul className="listContainer">
-        {searchedValue.length > 0
+        {searchedValue.length > 0 && organizations.length>0
           ? filteredData.map((listItem) => {
               return <ListItem key={listItem.id} {...listItem} />
             })
