@@ -10,12 +10,24 @@ import { Root } from './style'
 const SearchBar = () => {
   const dispatch = useDispatch()
 
+  function debounce(func, timeout = 300) {
+    console.log('gnacccc')
+    let timer
+    return (e) => {
+      const searchedValue = e.target.value.toLowerCase().trim()
+      if (!timer) {
+        dispatch(func(searchedValue))
+      }
+      clearTimeout(timer)
+      timer = setTimeout(() => {
+        timer = undefined
+      }, timeout)
+    }
+  }
   return (
     <Root>
       <TextField
-        onChange={(e) =>
-          dispatch(filterData(e.target.value.toLowerCase().trim()))
-        }
+        onChange={(e) => debounce(filterData)(e)}
         id="outlined-basic"
         label="Outlined"
         variant="outlined"
