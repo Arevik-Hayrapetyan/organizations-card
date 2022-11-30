@@ -1,13 +1,11 @@
 import './App.css'
 import { Fragment } from 'react'
-import SearchBar from './components/SearchBar/SearchBar'
 import Heading from './components/Heading/Heading'
-import AddForm from './components/AddForm/AddForm'
+import Navbar from './components/Navbar/Navbar'
+import ListItems from './components/ListItems/ListItems'
+import Footer from './components/Footer/Footer'
 import Container from '@mui/material/Container'
 import { styled } from '@mui/material/styles'
-import ListItems from './components/ListItems/ListItems'
-import CompanyPage from './components/Company/CompanyPage'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const Root = styled('div')(() => ({
   width: '100%',
@@ -31,12 +29,11 @@ function App() {
           }}
         >
           <Heading />
-          <SearchBar />
-          <AddForm />
+          <Navbar />
         </Container>
         <ListItems />
+        <Footer />
       </Root>
-    
     </Fragment>
   )
 }

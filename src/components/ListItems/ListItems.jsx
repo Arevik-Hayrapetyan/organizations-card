@@ -1,25 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ListItem from '../ListItem/ListItem'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   selectFilteredData,
-  selectOrganizations,
   selectSearchedValue,
+  selectSlicedData,
 } from '../../redux/slices/organizationSlice'
+import { handleSliceData } from '../../redux/slices/organizationSlice'
 import { Root } from './style'
 
 const ListItems = () => {
-  const organizations = useSelector(selectOrganizations)
-  const searchedValue = useSelector(selectSearchedValue)
+  const dispatch = useDispatch()
+  const slicedData = useSelector(selectSlicedData)
   const filteredData = useSelector(selectFilteredData)
+  const searchedValue = useSelector(selectSearchedValue)
+
+  useEffect(() => {
+    dispatch(handleSliceData(0))
+  }, [])
+
   return (
     <Root>
       <ul className="listContainer">
-        {searchedValue.length > 0 && organizations.length>0
+        {searchedValue
           ? filteredData.map((listItem) => {
               return <ListItem key={listItem.id} {...listItem} />
             })
-          : organizations.map((listItem) => {
+          : slicedData.map((listItem) => {
               return <ListItem key={listItem.id} {...listItem} />
             })}
       </ul>
