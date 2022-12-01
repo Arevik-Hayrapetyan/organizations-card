@@ -3,6 +3,7 @@ import Input from '../Input/Input'
 import { Root } from './style'
 import { handleChangeInputs } from '../../redux/slices/organizationSlice'
 import { useDispatch } from 'react-redux'
+import { TextField } from '@mui/material'
 
 const InfoContainer = ({ disabledBorder, props }) => {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const InfoContainer = ({ disabledBorder, props }) => {
 
   function handleInputChange(event) {
     const target = event.target
-    const value = +target.value
+    const value = value>0?+target.value:0
     const name = target.name
     setState((prev) => ({ ...prev, [name]: value }))
     dispatch(handleChangeInputs({ [name]: value }))
