@@ -5,6 +5,9 @@ export const Root = styled('div')(() => ({
     display: 'flex',
     flexWrap: 'wrap',
     listStyle: 'none',
-    justifyItems: 'center',
+    justifyContent: 'center',
   },
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 }))

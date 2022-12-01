@@ -15,16 +15,16 @@ const InfoContainer = ({ disabledBorder, props }) => {
 
   function handleInputChange(event) {
     const target = event.target
-    const value = target.value
+    const value = +target.value
     const name = target.name
     setState((prev) => ({ ...prev, [name]: value }))
-    dispatch(handleChangeInputs(state))
+    dispatch(handleChangeInputs({ [name]: value }))
   }
 
   return (
     <Root>
       <section className="wrapper">
-        <h4>Tracking</h4>
+        <h4 className="title">Tracking</h4>
         <Input
           label="In Use:"
           name="trackingInUse"
@@ -36,12 +36,13 @@ const InfoContainer = ({ disabledBorder, props }) => {
           label="Assigned:"
           name="trackingAssigned"
           value={props ? props.trackingAssigned : state.trackingAssigned}
+          disabledBorder={disabledBorder}
           handleChange={handleInputChange}
         />
       </section>
 
       <section className="wrapper">
-        <h4>Protection</h4>
+        <h4 className="title">Protection</h4>
         <Input
           label="In Use:"
           name="protectionInUse"
@@ -53,6 +54,7 @@ const InfoContainer = ({ disabledBorder, props }) => {
           label="Assigned:"
           name="protectionAssigned"
           value={props ? props.protectionAssigned : state.protectionAssigned}
+          disabledBorder={disabledBorder}
           handleChange={handleInputChange}
         />
       </section>

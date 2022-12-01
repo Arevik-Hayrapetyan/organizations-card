@@ -9,8 +9,8 @@ const Input = ({ label, name, value, disabledBorder, handleChange }) => {
       <TextField
         InputProps={
           disabledBorder
-            ? { sx: { height: 30, width: 80 }, readOnly: true }
-            : { sx: { height: 30, width: 80 } }
+            ? { sx: { height: 30, width: 80 }, readOnly: true}
+            : { sx: { height: 30, width: 80 },  }
         }
         sx={
           disabledBorder
@@ -22,6 +22,7 @@ const Input = ({ label, name, value, disabledBorder, handleChange }) => {
         type="number"
         value={value}
         name={name}
+      
         onChange={(e) => handleChange(e)}
       />
     </Root>

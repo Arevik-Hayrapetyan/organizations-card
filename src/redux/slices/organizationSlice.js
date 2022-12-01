@@ -21,6 +21,7 @@ const initialState = {
     protectionInUse: 0,
     protectionAssigned: 0,
   },
+  currentPage: 1,
 }
 
 export const organizationSlice = createSlice({
@@ -57,6 +58,10 @@ export const organizationSlice = createSlice({
       state.organizations = updatedOrganizations
       state.count = updatedOrganizations.length
 
+      const start = state.currentPage * 2 - 2
+      const end = start + 2
+      state.slicedData = state.organizations.slice(start, end)
+
       setItems('organizations', updatedOrganizations)
       state.newCompany = {
         trackingInUse: 0,
@@ -68,29 +73,32 @@ export const organizationSlice = createSlice({
 
     handleDeleteCompany: (state, action) => {
       const id = action.payload
+
       const filteredCompanies = state.organizations.filter(
         (item) => item.id !== id,
       )
-
-      const filteredSlicedCompanies = state.slicedData.filter(
-        (item) => item.id !== id,
-      )
-
       const updatedFilteredData = state.slicedData.filter(
         (item) => item.id !== id,
       )
 
       state.organizations = filteredCompanies
-      state.slicedData = filteredSlicedCompanies
       state.filteredData = updatedFilteredData
+      state.currentPage = 1
       state.count = filteredCompanies.length
 
+      state.slicedData = state.organizations.slice(0, 2)
       setItems('organizations', state.organizations)
+      alert('Successfully deleted!')
     },
+
     handleSliceData: (state, action) => {
-      const start = action.payload * 2 - 2
+      const start = state.currentPage * 2 - 2
       const end = start + 2
       state.slicedData = state.organizations.slice(start, end)
+    },
+
+    handleChangePageNumber: (state, action) => {
+      state.currentPage = action.payload
     },
   },
 })
@@ -103,6 +111,7 @@ export const {
   handleDeleteCompany,
   getFilteredCompaniesSize,
   handleSliceData,
+  handleChangePageNumber,
 } = organizationSlice.actions
 
 export const selectOrganizations = (state) => state.organization.organizations
@@ -112,4 +121,5 @@ export const selectFilteredData = (state) => state.organization.filteredData
 export const selectFilteredDataCount = (state) =>
   state.organization.filteredDataCount
 export const selectSlicedData = (state) => state.organization.slicedData
+export const selectCurrentPage = (state) => state.organization.currentPage
 export default organizationSlice.reducer

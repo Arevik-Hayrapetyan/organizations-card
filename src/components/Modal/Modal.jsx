@@ -18,8 +18,10 @@ const StyledModal = ({ open, handleClose, setMessage, message }) => {
   const [name, setName] = useState('')
 
   function handleAdd() {
-    if (!name.trim().length > 0) {
-      setMessage('Name input cant be empty!!!!!!!')
+    const value = name.trim()
+    
+    if (!value.length > 0 ||!/^[A-Za-z\s]*$/.test(value)) {
+      setMessage('Name input cant be empty and must be include only letters!!!!!!!')
       return
     }
     dispatch(handleChangeInputs({ name }))

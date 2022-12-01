@@ -22,7 +22,7 @@ const ListItems = () => {
   return (
     <Root>
       <ul className="listContainer">
-        {searchedValue
+        {searchedValue.length > 0
           ? filteredData.map((listItem) => {
               return <ListItem key={listItem.id} {...listItem} />
             })

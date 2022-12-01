@@ -40,9 +40,8 @@ export const Root = styled('div')(() => ({
     display: 'block',
   },
   '.licences': {
-    color: '#282828',
-    fontSize: 17,
-    fontWeight: 500,
+    fontSize: 18,
+    // fontWeight: 500,
     margin: 0,
     marginTop: 15,
   },

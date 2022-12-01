@@ -6,4 +6,7 @@ export const Root = styled('div')({
   },
   display: 'flex',
   flexDirection: 'row',
+  '& .title':{
+    fontSize:"14px"
+  }
 })
